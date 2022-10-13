@@ -1,0 +1,20 @@
+{
+    "name": "APE2",
+    "symbol": "APE",
+    "description": "Collection of 3 APEs on the blockchain. This is the APE 2/3.",
+    "image": "1.jpeg",
+    "attributes": [
+      {
+        "trait_type": "APE",
+        "value": "0"
+      }
+    ],
+    "properties": {
+      "files": [
+        {
+          "uri": "1.jpeg",
+          "type": "image/jpeg"
+        }
+      ]
+    }
+  }
