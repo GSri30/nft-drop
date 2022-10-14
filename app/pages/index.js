@@ -35,12 +35,13 @@ const Home = () => {
                     <p className="sub-text">NFT drop machine with fair mint</p>
                     {/* Render your connect to wallet button right here */}
                     {wallet.publicKey ? <CandyMachine walletAddress={wallet} /> : renderNotConnectedContainer()}
+                    {wallet.publicKey && 
                     <button
                         className="cta-button mint-button"
                         onClick={viewHandler}
                     >
                     {view ? 'Collapse NFTs' : 'View NFTs'}
-                    </button>
+                    </button>}
                 </div>
                 {view && wallet.publicKey && <ViewNFT wallet={wallet} /> }
                 <div className="footer-container">
