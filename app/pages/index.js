@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from 'react';
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
 import CandyMachine from "../components/CandyMachine";
+import ViewNFT from "../components/ViewNFT";
 
 // Constants
 const TWITTER_HANDLE = "_buildspace";
@@ -9,6 +10,12 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const Home = () => {
     const wallet = useWallet();
+    const [view, setView] = useState(false);
+
+    const viewHandler = () => {
+        setView(!view);
+    }
+
     // Actions
     const renderNotConnectedContainer = () => (
         <div>
@@ -19,17 +26,23 @@ const Home = () => {
             </div>
         </div>
     );
-    console.log(wallet);
 
     return (
         <div className="App">
             <div className="container">
                 <div className="header-container">
-                    <p className="header">🍭 Candy Drop</p>
+                    <p className="header">🐵 APE Drop</p>
                     <p className="sub-text">NFT drop machine with fair mint</p>
                     {/* Render your connect to wallet button right here */}
                     {wallet.publicKey ? <CandyMachine walletAddress={wallet} /> : renderNotConnectedContainer()}
+                    <button
+                        className="cta-button mint-button"
+                        onClick={viewHandler}
+                    >
+                    {view ? 'Collapse NFTs' : 'View NFTs'}
+                    </button>
                 </div>
+                {view && wallet.publicKey && <ViewNFT wallet={wallet} /> }
                 <div className="footer-container">
                     <img alt="Twitter Logo" className="twitter-logo" src="twitter-logo.svg" />
                     <a className="footer-text" href={TWITTER_LINK} target="_blank" rel="noreferrer">{`built on @${TWITTER_HANDLE}`}</a>
