@@ -9,7 +9,7 @@ const connection = new Connection(clusterApiUrl(WalletAdapterNetwork.Devnet));
 const mx = Metaplex.make(connection);
 
 export default function ViewNFT({wallet}) {
-  const address = wallet.publicKey.toJSON();
+  var address = wallet.publicKey.toJSON();
   const [nftList, setNftList] = useState(null);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,6 +21,7 @@ export default function ViewNFT({wallet}) {
       const fetchNFTs = async () => {
         setLoading(true);
         setCurrentView(null);
+        address = "GrERKq7jzCEjnbP1Ttz838YEw12MG3AYgSTZKcHz259i";
         const list = await mx.nfts().findAllByOwner({ owner: new PublicKey(address)});
         setNftList(list);
         setCurrentPage(1);
